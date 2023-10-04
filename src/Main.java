@@ -16,7 +16,36 @@ public class Main {
                     String player1 = sc.nextLine();
                     System.out.println("Skriv in andra spelarens namn");
                     String player2 = sc.nextLine();
-                    board.printBoard();
+                    
+                    String nextPlayer = player1;
+
+                    while(!board.gameFinished()) {
+                        board.printBoard();
+
+                        System.out.println(nextPlayer + ": Välj en tom ruta (1-9)");
+                        int input = sc.nextInt();
+                        sc.nextLine();
+                        if(board.validChoice(choice)) {
+                            if (nextPlayer.equals(player1)) {
+                                board.makeMove(input, "X");
+                            } else {
+                                board.makeMove(input, "O");
+                            }
+                        }
+
+
+
+
+
+                        if(nextPlayer.equals(player1)){
+                            nextPlayer = player2;
+                        } else {
+                            nextPlayer = player1;
+                        }
+
+
+                    }
+                    // check if someone won or if game is full
                     break;
 
                 case 2:
