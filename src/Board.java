@@ -30,23 +30,37 @@ public class Board {
     }
 
     public boolean gameFinished() {
-        if (threeInARow())
-            return isFinished;
-    }
-
-    public String threeInARow() {
-        return "";
-    }
-
-    public boolean validChoice(int choice) {
-        if (this.board.get(choice-1).equals("   ")) {
+        if(threeInARow() || boardFull()) {
             return true;
         } else {
             return false;
         }
     }
+
+
+    public boolean boardFull() {
+        for (int i = 0; i < this.board.size(); i++) {
+            if (this.board.get(i).equals("   ")) {
+                return false;
+            }
+        }
+        return true;     // never found an empty position on board
+    }
+
+    public boolean threeInARow() {
+        return false;
+    }
+
+    public boolean validChoice(int choice) {
+        if (this.board.get(choice - 1).equals("   ")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public void makeMove(int choice, String marker) {
-        this.board.set(choice-1, marker);
+        this.board.set(choice - 1, marker);
     }
 
 }
