@@ -6,6 +6,7 @@ public class Main {
         int choice;
         Board board = new Board();
 
+
         do {
             System.out.println("Välkommen, välj spelläge:\n 1. Spela mot en vän\n 2. Spela mot datorn \n 3. Avsluta");
             choice = sc.nextInt();
@@ -13,7 +14,7 @@ public class Main {
                 switch (choice) {
                 case 1:
                     System.out.println("Skriv in första spelarens namn");
-                    String player1 = sc.nextLine();
+                    Player player1 = new Player(sc.nextLine(), "X", true);
                     System.out.println("Skriv in andra spelarens namn");
                     String player2 = sc.nextLine();
 
