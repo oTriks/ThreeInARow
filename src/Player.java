@@ -5,9 +5,32 @@ private String marker;
 private boolean myTurn;
 
 
+
+
     public Player(String name, String marker, boolean myTurn) {
         this.name = name;
         this.marker = marker;
         this.myTurn = myTurn;
+    }
+
+    public boolean isMyTurn() {
+        return myTurn;
+    }
+
+    public void changeMyTurn() {
+        if(this.myTurn) {
+            this.myTurn = false;
+        } else{
+            this.myTurn = true;
+        }
+
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getMarker() {
+        return marker;
     }
 }

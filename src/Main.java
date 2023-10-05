@@ -4,49 +4,46 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int choice;
+        Player nextPlayer = null;
         Board board = new Board();
 
 
         do {
             System.out.println("Välkommen, välj spelläge:\n 1. Spela mot en vän\n 2. Spela mot datorn \n 3. Avsluta");
             choice = sc.nextInt();
-    sc.nextLine();
-                switch (choice) {
+            sc.nextLine();
+            switch (choice) {
                 case 1:
                     System.out.println("Skriv in första spelarens namn");
-                    Player player1 = new Player(sc.nextLine(), "X", true);
+                    Player player1 = new Player(sc.nextLine(), " X ", true);
                     System.out.println("Skriv in andra spelarens namn");
-                    String player2 = sc.nextLine();
+                    Player player2 = new Player(sc.nextLine(), " O ", false);
 
-                    String nextPlayer = player1;
 
-                    while(!board.gameFinished()) {
+                    while (!board.isWinner() && !board.boardFull()) {
                         board.printBoard();
-
-                        System.out.println("\n" + nextPlayer + ": Välj en tom ruta (1-9)");
+                        if(player1.isMyTurn()){
+                            nextPlayer = player1;
+                        } else {
+                            nextPlayer = player2;
+                        }
+                        System.out.println("\n" + nextPlayer.getName() + ": Välj en tom ruta (1-9)");
                         int input = sc.nextInt();
                         sc.nextLine();
-                        if(board.validChoice(input)) {
-                            if (nextPlayer.equals(player1)) {
-                                board.makeMove(input, "X");
-                            } else {
-                                board.makeMove(input, "O");
-                            }
-                            if(nextPlayer.equals(player1)){
-                                nextPlayer = player2;
-                            } else {
-                                nextPlayer = player1;
-                            }
-                        }else{
+                        if (board.validChoice(input)) {
+                                board.makeMove(input, nextPlayer.getMarker());
+                                player1.changeMyTurn();
+                                player2.changeMyTurn();
+                        } else {
                             System.out.println("Ogiltigt drag, testa igen");
                         }
-
-
                     }
                     board.printBoard();
-                    System.out.println("Spelet är slut");
-                    // someone won?  (results)
-                    // check if someone won or if game is full
+                    if(board.isWinner()){
+                        System.out.println("\n" + nextPlayer.getName() + " är vinnaren!\n");
+                    } else {
+                        System.out.println("\nBrädet är fullt, det blev oavgjort \n");
+                    }
                     break;
 
                 case 2:

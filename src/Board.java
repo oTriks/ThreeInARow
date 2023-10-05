@@ -29,13 +29,13 @@ public class Board {
 
     }
 
-    public boolean gameFinished() {
-        if(threeInARow() || boardFull()) {
+  /*  public boolean gameFinished() {
+        if (threeInARow() || boardFull()) {
             return true;
         } else {
             return false;
         }
-    }
+    }  */
 
 
     public boolean boardFull() {
@@ -47,9 +47,7 @@ public class Board {
         return true;     // never found an empty position on board
     }
 
-    public boolean threeInARow() {
-        return false;
-    }
+
 
     public boolean validChoice(int choice) {
         if (this.board.get(choice - 1).equals("   ")) {
@@ -63,4 +61,25 @@ public class Board {
         this.board.set(choice - 1, marker);
     }
 
+    public boolean isWinner() {
+        if (this.board.get(0).equals(this.board.get(1)) && this.board.get(1).equals(this.board.get(2)) && !this.board.get(0).equals("   ")) {
+            return true;
+        } else if (this.board.get(3).equals(this.board.get(4)) && this.board.get(4).equals(this.board.get(5)) && !this.board.get(3).equals("   ")) {
+            return true;
+        } else if (this.board.get(6).equals(this.board.get(7)) && this.board.get(7).equals(this.board.get(8)) && !this.board.get(6).equals("   ")) {
+            return true;
+        } else if (this.board.get(0).equals(this.board.get(3)) && this.board.get(3).equals(this.board.get(6)) && !this.board.get(0).equals("   ")) {
+            return true;
+        } else if (this.board.get(1).equals(this.board.get(4)) && this.board.get(4).equals(this.board.get(7)) && !this.board.get(1).equals("   ")) {
+            return true;
+        } else if (this.board.get(2).equals(this.board.get(5)) && this.board.get(5).equals(this.board.get(8)) && !this.board.get(2).equals("   ")) {
+            return true;
+        } else if (this.board.get(0).equals(this.board.get(4)) && this.board.get(4).equals(this.board.get(8)) && !this.board.get(0).equals("   ")) {
+            return true;
+        } else if (this.board.get(2).equals(this.board.get(4)) && this.board.get(4).equals(this.board.get(6)) && !this.board.get(2).equals("   ")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
