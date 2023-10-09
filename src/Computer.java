@@ -8,7 +8,7 @@ public class Computer extends Player {
     }
 
     public int randomMove() {
-        return random.nextInt(9);
+        return random.nextInt(8) + 1;
     }
 
 }

@@ -2,6 +2,7 @@ public class Player {
 
 private String name;
 private String marker;
+private int wins = 0;
 private boolean myTurn;
 
 
@@ -33,4 +34,14 @@ private boolean myTurn;
     public String getMarker() {
         return marker;
     }
+
+    public void addWin(){
+        wins += 1;
+    }
+
+    public int getWins() {
+        return wins;
+    }
+
 }
+
