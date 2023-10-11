@@ -129,7 +129,7 @@ public class Main {
                             System.out.println("\n\n" + nextPlayer.getName() + ": Gör ditt drag:");
                             int input;
                             do {
-                                input = ((Computer) nextPlayer).randomMove();
+                                input = ((Computer) nextPlayer).randomMove();  // need to make sure it´s a computer object
                             } while (!board.validChoice(input));
                             board.makeMove(input, nextPlayer.getMarker());
                             humanPlayer.changeMyTurn();
@@ -185,7 +185,6 @@ public class Main {
             }
         }
         while (choice != 3);
-        // Count how many wins
 
     }
 
