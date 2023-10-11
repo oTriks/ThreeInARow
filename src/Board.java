@@ -16,13 +16,10 @@ public class Board {
     // this metod prints the current gameboard
     public void printBoard() {
         for (int i = 0; i < this.board.size(); i++) {   //   looping for every position in the list
-
             System.out.print(this.board.get(i));
             if (i != 2 && i != 5 && i != 8) {  //  no vertical divider when there is a new row on board
-
                 System.out.print("|");
             } else if (i != 8) {  // no divider after the last position
-
                 System.out.println("\n---+---+---");
             }
         }
@@ -39,7 +36,7 @@ public class Board {
 
 
     public boolean boardFull() {
-        for (int i = 0; i < this.board.size(); i++) {
+        for(int i = 0; i < this.board.size(); i++) {
             if (this.board.get(i).equals("   ")) {
                 return false;
             }
@@ -48,7 +45,7 @@ public class Board {
     }
 
 
-
+    // check if chosen position is "empty"
     public boolean validChoice(int choice) {
         if (this.board.get(choice - 1).equals("   ")) {
             return true;
@@ -57,9 +54,11 @@ public class Board {
         }
     }
 
+    // runs after "validChoice()"
     public void makeMove(int choice, String marker) {
         this.board.set(choice - 1, marker);
     }
+
 
     public boolean isWinner() {
         if (this.board.get(0).equals(this.board.get(1)) && this.board.get(1).equals(this.board.get(2)) && !this.board.get(0).equals("   ")) {

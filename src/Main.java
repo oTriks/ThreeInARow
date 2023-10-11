@@ -1,4 +1,3 @@
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
@@ -13,7 +12,7 @@ public class Main {
         Player player2 = null;
         Player humanPlayer = null;
         Computer computerPlayer = null;
-boolean validNewGame;
+        boolean validNewGame;
 
         do {
             do {
@@ -25,18 +24,18 @@ boolean validNewGame;
                     } else {
                         validNewGame = false;  // reset  value
                         System.out.println("Vill du/ ni spela igen? (ja/nej)");
-                       while (!validNewGame){
-                           String newGame = sc.nextLine();
-                           if (newGame.equals("nej")) {
-                               choice = 3;
-                               validNewGame = true;
-                           } else if (newGame.equals("ja")){
-                               board = new Board();
-                               validNewGame = true;
-                           } else {
-                               System.out.println("Ogiltigt svar (endast ja/nej)");
-                           }
-                       }
+                        while (!validNewGame) {
+                            String newGame = sc.nextLine();
+                            if (newGame.equals("nej")) {
+                                choice = 3;
+                                validNewGame = true;
+                            } else if (newGame.equals("ja")) {
+                                board = new Board();
+                                validNewGame = true;
+                            } else {
+                                System.out.println("Ogiltigt svar (endast ja/nej)");
+                            }
+                        }
                     }
                     if (choice < 1 || choice > 3) {
                         System.out.println("Felaktig inmatning");
@@ -56,7 +55,6 @@ boolean validNewGame;
                         System.out.println("Skriv in andra spelarens namn");
                         player2 = new Player(sc.nextLine(), " O ", false);
                     }
-
 
                     // repeat as long as no winner and board is not full
                     while (!board.isWinner() && !board.boardFull()) {
@@ -102,6 +100,15 @@ boolean validNewGame;
                     }
                     games += 1;
                     System.out.println("Ni har spelat " + games + " omgångar.\n" + player1.getName() + " har vunnit: " + player1.getWins() + "\n" + player2.getName() + " har vunnit: " + player2.getWins());
+                    // set correct starting player for next game
+                    if (games % 2 == 0 && !player1.isMyTurn()) {
+                        player1.changeMyTurn();
+                        player2.changeMyTurn();
+                    } else if (games % 2 != 0 && !player2.isMyTurn()) {
+                        player1.changeMyTurn();
+                        player2.changeMyTurn();
+                    }
+
                     break;
 
                 case 2:
@@ -161,7 +168,14 @@ boolean validNewGame;
                     }
                     games += 1;
                     System.out.println("Du har spelat " + games + " omgångar.\n" + humanPlayer.getName() + " har vunnit: " + humanPlayer.getWins() + "\n" + computerPlayer.getName() + " har vunnit: " + computerPlayer.getWins());
-
+                    // set correct starting player for next game
+                    if (games % 2 == 0 && !humanPlayer.isMyTurn()) {
+                        humanPlayer.changeMyTurn();
+                        computerPlayer.changeMyTurn();
+                    } else if (games % 2 != 0 && !computerPlayer.isMyTurn()) {
+                        computerPlayer.changeMyTurn();
+                        humanPlayer.changeMyTurn();
+                    }
                     break;
 
                 case 3:
