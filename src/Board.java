@@ -35,6 +35,7 @@ public class Board {
     }  */
 
 
+    // check if the board is full (not containing "   ")
     public boolean boardFull() {
         for(int i = 0; i < this.board.size(); i++) {
             if (this.board.get(i).equals("   ")) {
@@ -47,7 +48,7 @@ public class Board {
 
     // check if chosen position is "empty"
     public boolean validChoice(int choice) {
-        if (this.board.get(choice - 1).equals("   ")) {
+        if(this.board.get(choice - 1).equals("   ")) {
             return true;
         } else {
             return false;
@@ -60,6 +61,7 @@ public class Board {
     }
 
 
+    // all possible winning combinations
     public boolean isWinner() {
         if (this.board.get(0).equals(this.board.get(1)) && this.board.get(1).equals(this.board.get(2)) && !this.board.get(0).equals("   ")) {
             return true;

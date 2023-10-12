@@ -14,10 +14,13 @@ private boolean myTurn;
         this.myTurn = myTurn;
     }
 
+    // checks if it´s the player turn
     public boolean isMyTurn() {
         return myTurn;
     }
 
+
+    // change which player turn it is
     public void changeMyTurn() {
         if(this.myTurn) {
             this.myTurn = false;
@@ -34,6 +37,7 @@ private boolean myTurn;
     public String getMarker() {
         return marker;
     }
+
 
     public void addWin(){
         wins += 1;
