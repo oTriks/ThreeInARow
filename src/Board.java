@@ -26,14 +26,6 @@ public class Board {
 
     }
 
-  /*  public boolean gameFinished() {
-        if (threeInARow() || boardFull()) {
-            return true;
-        } else {
-            return false;
-        }
-    }  */
-
 
     // check if the board is full (not containing "   ")
     public boolean boardFull() {
